@@ -21,8 +21,10 @@ public class Run {
 //		cp.practice8();
 //		ControlPractice cp = new ControlPractice();
 //		cp.practice9();
+//		ControlPractice cp = new ControlPractice();
+//		cp.practice10();
 		ControlPractice cp = new ControlPractice();
-		cp.practice10();
+		cp.practice11();
 	}
 
 }

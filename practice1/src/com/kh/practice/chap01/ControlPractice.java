@@ -202,33 +202,32 @@ public class ControlPractice {
 		sc.nextLine();
 		char op = sc.nextLine().charAt(0);
 		
-		double result = 0;
+		double result = 0; // 계산 결과를 담는 변수.
 		
-		switch(op) {
-		case '+':
-			result = num1 + num2;
-			break;
-		case '-':
-			result = num1 - num2;
-			break;
-		case '*':
-			result = num1 * num2;
-			break;
-		case '/':
-			result = (double)num1 / (double)num2;
-			break;
-		case '%':
-			result = num1 % num2;
-			break;
-		default:
-			System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
+		if(num1 > 0 && num2 > 0) {
+			switch(op) {
+			case '+': result = num1 + num2;	break;
+			case '-': result = num1 - num2;	break;
+			case '*': result = num1 * num2;	break;
+			case '/': result = (double)num1 / num2;	break;
+			case '%': result = num1 % num2;	break;
+			default:
+				System.out.println("잘못 입력하셨습니다. 프로그램을 종료합니다.");
+			}
+			
+			if(op == '/') {
+				System.out.printf("%d %c %d = %f", num1, op, num2, result);
+			}else if(op == '+' || op == '-' || op == '*' || op == '%') {
+				System.out.printf("%d %c %d = %d", num1, op, num2, (int)result);
+			}
+		} else {
+			System.out.println("양수만을 입력해주세요. 프로그램을 종료합니다.");
 		}
 		
-		if(op == '+' || op == '-' || op == '*' || op == '/' || op == '%') {
-			System.out.println(num1 + " " + op + " " + num2 + " = " + result);
-		}
-		
-		// ?? : 3.75만 값으로 나온다. (double)을 넣어봐도!
+		// 성공이지만 printf()를 통해 온전한 double형으로 출력해야하는게 더 맞다. 
+//		if(op == '+' || op == '-' || op == '*' || op == '/' || op == '%') {
+//			System.out.println(num1 + " " + op + " " + num2 + " = " + result);
+//		}
 		
 	}
 	
@@ -250,7 +249,7 @@ public class ControlPractice {
 		System.out.println("================= 결과 =================");
 		
 		int maxAtt = 20;
-		double perAtt = (double)att / (double)maxAtt * 100.0;
+		double perAtt = (double)att / maxAtt * 100.0;
 		
 		double totalMid = mid * 0.2;
 		double totalFinal = finals * 0.3;
@@ -273,9 +272,38 @@ public class ControlPractice {
 				System.out.println("Fail [점수 미달]");
 			}
 		}
+	}
+	
+	public void practice9_1() {
 		
-		// ?? : perAtt < 70 출석률 70%이하를 표현했는데 결석률을 표현하려면 다시 선언하는수밖에없나?
+		System.out.print("중간 고사 점수 : ");
+		int midTerm = sc.nextInt(); 
+		System.out.print("기말 고사 점수 : ");
+		int finalTerm = sc.nextInt(); 
+		System.out.print("과제 점수 : ");
+		int homework = sc.nextInt();
+		System.out.print("출석 회수 : ");
+		int att = sc.nextInt();
 		
+		if(att > 20*0.7) { // 출석 만족
+			System.out.println("중간 고사 점수(20) : " +  midTerm * 0.2);
+			System.out.println("기말 고사 점수(30) : " +  finalTerm * 0.2);
+			System.out.println("과제 점수       (30) : " +  homework * 0.2);
+			System.out.println("출석 점수       (20) : " +  att * 0.2);
+			
+			double sum
+				= midTerm * 0.2 + finalTerm * 0.3 
+				+ homework * 0.3 + (att / 20.0 * 100 * 0.2);
+			System.out.println("총점 : " + sum);
+			
+			if(sum >= 70 ) {
+				System.out.println("PASS");
+			} else {
+				System.out.println("Fail [점수 미달]");
+			}
+		} else {
+			System.out.print("Fail [출석 회수 부족 (" + att + "/20)]");
+		}
 	}
 	
 	public void practice10() {
@@ -294,13 +322,18 @@ public class ControlPractice {
 		System.out.println("9. P/F");
 		System.out.print("선택 : ");
 		int menu = sc.nextInt();
+		sc.nextLine();		
+//		같은 클래스 안이기 때문에 따로 객체생성을 불러오지 않아도 메소드를 호출 할 수 있음. 
 		
-		switch(menu) {
-		case 1: case 2: case 3: case 4: case 5:
-		case 6: case 7: case 8: case 9:
-			System.out.println("(실습문제" + menu + " 실행!)");
-			break;
-		}
+//		switch(menu) {
+//		case 1: case 2: case 3: case 4: case 5:
+//		case 6: case 7: case 8: case 9:
+//			System.out.print("(실습문제" + menu + " 실행!)");
+//			String enter = sc.nextLine();
+//			break;
+//		}
+
+//		구현 안해도 되는 부분
 		
 		switch(menu) {
 		case 1: practice1();
@@ -321,9 +354,84 @@ public class ControlPractice {
 			break;
 		case 9: practice9();
 			break;
+		default:
+			System.out.println("잘못입력하셨습니다.");
 		}
 		
-		// ?? : 왜 줄바꿈되어 (실습문제n 실행!)이 출력 되는가?
-		// ?? : 메소드/클래스명이 변수로 올 수 있는가? 
+		// ?? : 왜 줄바꿈되어 (실습문제n 실행!)이 출력 되는가? switch문이 실행될떄??
+		// ?? : 메소드/클래스명이 변수로 올 수 있는가? 없다.
+	}
+	
+	public void practice11() {
+		
+//		정수를 이용해서 4자리 비밀번호를 만들려고 하는데
+//		이 때 4자리 정수를 입력 받아 각 자리 수에 중복되는 값이 없을 경우 ‘생성 성공’
+//		중복 값이 있으면 ‘중복 값 있음‘
+//		자리수가 안 맞으면 ‘자리 수 안 맞음‘ 출력
+//		단, 제일 앞자리 수의 값은 1~9 사이 정수
+		
+		System.out.print("비밀번호 입력(1000~9999) : ");
+		String strPw = sc.nextLine(); 
+		int pw = Integer.parseInt(strPw);
+//		=2 int pw = Integer.parseInt(sc.nextLine());
+//		-> String 자료형을 써야하기 때문에 안됨
+		int length = String.valueOf(pw).length(); 
+//		= int length = (int)(Math.log10(pw)+1);
+		
+		
+		// 실패2 (비밀번호 최대 자릿수를 설정하고 싶을때)
+		// 진도(제어문)을 더 나간 후 해봐야한다.
+		
+//		int maxLength = 4; 
+//		if(strPw.charAt(0) == '0') {
+//			System.out.print("제일 앞자리 수는 0이 올수 없음!");
+//		} else if(length != maxLength){
+//			System.out.print("자리수 안맞음");
+//		} else if(length == maxLength){
+//			for (int i = 0; i < length; i++) {
+//				for (int j = 0; j < length; j++) {
+//					if(strPw.charAt(i) != strPw.charAt(j)) {
+//						System.out.print("성공!");
+//					} else {
+//						System.out.print("실패, 중복 값 있음");
+//						System.out.println(strPw.charAt(i));
+//						System.out.println(strPw.charAt(j));
+//						break;
+//					}
+//				}
+//				break;
+//			}
+//		}
+		
+		
+		// 성공1
+		
+//		int num1 = strPw.charAt(0);
+//		int num2 = strPw.charAt(1);
+//		int num3 = strPw.charAt(2);
+//		int num4 = strPw.charAt(3);
+//		-> 변수를 지정할 경우 없는 자리수가 선언되있어, 1,2,3자리를 입력하면 에러가난다.
+//		-> 위 코드는 지우고 실행하자.
+		
+		if(strPw.charAt(0) == '0') {
+			System.out.print("제일 앞자리 수는 0이 올수 없음!");
+		} else if(length != 4){
+			System.out.print("자리수 안맞음");
+		} else if(strPw.charAt(0) == strPw.charAt(1) || strPw.charAt(0) == strPw.charAt(2) 
+				|| strPw.charAt(0) == strPw.charAt(3) || strPw.charAt(1) == strPw.charAt(2)
+				|| strPw.charAt(1) == strPw.charAt(3) || strPw.charAt(2) == strPw.charAt(3)){
+			System.out.print("실패, 중복 값 있음");
+		} else {
+			System.out.print("성공!");
+		}
+		
+		
+		// 실패1
+//		if(strPw.charAt(0) != strPw.charAt(1)){
+//			System.out.print("성공!");
+//		} else if(strPw.charAt(0) == strPw.charAt(1)){
+//			System.out.print("실패, 중복 값 있음");
+//		}
+		
 	}
 }
