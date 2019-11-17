@@ -304,7 +304,7 @@ public class LoopPractice {
 				continue;
 			}
 			
-			int result = 0;
+			double result = 0;
 			switch(op) {
 			case '+': result = num1 + num2; break;
 			case '-': result = num1 - num2; break;

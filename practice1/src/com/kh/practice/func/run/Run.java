@@ -1,4 +1,4 @@
-package com.kh.practice.run;
+package com.kh.practice.func.run;
 
 import com.kh.practice.func.OperatorPractice;
 
