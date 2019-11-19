@@ -100,8 +100,60 @@ public class DimensionPractice {
 					}
 					arr[line][row] = lineRowSum;
 				}
-				
 				System.out.printf("%3d",arr[line][row]);
+			}
+			System.out.println();
+		}
+	}
+	
+	public void practice4Kh() {
+		
+		// 4행 4열 2차원 배열을 생성하여
+		int[][] arr = new int[4][4];
+		
+		// 0행 0열 부터 2행 2열까지는 1~10까지의 임의의 정수 값 저장 후
+		for(int i = 0; i < arr.length-1; i++) {
+			for(int j = 0; j < arr[i].length-1; j++) {
+				arr[i][j] = (int)(Math.random() * 10) +1;
+			}
+		}
+		
+//		arr[0][3] = arr[0][0]
+//				  + arr[0][1]
+//				  + arr[0][2];
+//		arr[1][3] = arr[1][0]
+//				  + arr[1][1]	
+//				  + arr[1][2];
+//		arr[2][3] = arr[2][0]
+//				  + arr[2][1]
+//				  + arr[2][2];
+//	
+//		
+//		
+//		arr[3][0] = arr[0][0]
+//				  + arr[1][0]
+//				  + arr[2][0];
+//		arr[3][1] = arr[0][1]
+//				  + arr[1][1]
+//				  + arr[2][1];
+//		arr[3][2] = arr[0][2]
+//				  + arr[1][2]
+//				  + arr[2][2];
+		
+		for(int i = 0; i < arr.length-1; i++) {
+			for(int j = 0; j < arr[i].length-1; j++) {
+				arr[i][3] += arr[i][j];
+				arr[3][i] += arr[j][i];
+			}
+		}
+		
+		for(int i = 0; i < arr.length-1; i++) {
+			arr[3][3] += arr[i][3] + arr[3][i];
+		}
+		
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr[i].length; j++) {
+				System.out.printf("%3d", arr[i][j]);
 			}
 			System.out.println();
 		}
@@ -122,7 +174,6 @@ public class DimensionPractice {
 		
 		int[][] arr = new int[line][row];
 		
-		int value = 1;
 		for(int i = 0; i < arr.length; i++) {
 			for(int j = 0; j <arr[i].length; j++) {
 				int random = (int)(Math.random()* 26) + 65;
@@ -166,7 +217,7 @@ public class DimensionPractice {
 		int[][] arr = new int[line][];
 		
 		for(int i = 0; i < arr.length; i++) {
-			System.out.print(i + "열의 크기 : ");
+			System.out.print(i + "행의 크기 : ");
 			int row = sc.nextInt();
 			arr[i] = new int[row];	
 			if(row != 0) {
@@ -176,9 +227,32 @@ public class DimensionPractice {
 		int a = 97;
 		for(int i = 0; i < arr.length; i++) {
 			for(int j =0; j <arr[i].length; j++) {
-				arr[i][j] = a;
-				a++;
+				arr[i][j] = a++;
+//				a++;
 				System.out.printf("%-2c",arr[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	public void practice7Kh() {
+		// 사용자에게 행의 크기를 받고
+		Scanner sc = new Scanner(System.in);
+		System.out.print("행의 크기 : ");
+		int row = sc.nextInt();
+		
+		// 그 수만큼 반복을 통해 열의 크기도 받아 문자형 가변 배열을 선언 및 할당
+		char[][] chArr = new char[row][];
+		for(int i = 0; i < row; i++) {
+			System.out.print(i + "행의 크기 : ");
+			chArr[i] = new char[sc.nextInt()];
+		}
+		
+		char data = 'a';
+		for(int i = 0; i < chArr.length; i++) {
+			for(int j = 0; j < chArr[i].length; j++) {
+				chArr[i][j] = data++;
+				System.out.print(chArr[i][j] + " ");
 			}
 			System.out.println();
 		}
@@ -195,7 +269,7 @@ public class DimensionPractice {
 		
 		// 1분단 다음 2분단
 		String student[] = {"강건강", "남나나", "도대담", "류라라", "문미미", "박보배",
-				"송성실", "윤예의 ", "진재주", "차천축", "피풍표", "홍하하"};
+							"송성실", "윤예의 ", "진재주", "차천축", "피풍표", "홍하하"};
 		
 		String group1[][] = new String[3][2];
 		String group2[][] = new String[3][2];
@@ -290,4 +364,89 @@ public class DimensionPractice {
 		}
 		System.out.printf("검색하신 %s 학생은 %s %s %s 에 있습니다.", searchName, dan, rine, rightLeft);
 	}
+	
+	public void practice9Kh() {
+		// 1차원 배열에 12명의 학생들을 출석부 순으로 초기화 하고
+		String[] student = {"강건강", "남나나", "도대담", "류라라", "문미미", "박보배",
+							"송성실", "윤예의", "진재주", "차천축", "피퐁표", "홍하하"};
+		
+		// 2열 3행으로 2차원 배열 2개를 이용하여 분단을 나눠
+		String[][] seat1 = new String[3][2];
+		String[][] seat2 = new String[3][2];
+		
+		// 1분단 왼쪽부터 오른쪽, 1행에서 아래 행 순으로 자리 배치.
+		int count = 0;
+		// 학생 수를 새기 위해서, 이어서 넣을 수 있도록 변수를 지정 해준다.
+		System.out.println("== 1분단 ==");
+		for(int i = 0; i < seat1.length; i++) {
+			for(int j = 0; j < seat1[i].length; j++) {
+				seat1[i][j] = student[count];
+				count++;
+				System.out.print(seat1[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("== 2분단 ==");
+		for(int i = 0; i < seat2.length; i++) {
+			for(int j = 0; j < seat2[i].length; j++) {
+				seat2[i][j] = student[count];
+				count++;
+				System.out.print(seat2[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		// 검색
+		System.out.println("=============================");
+		
+		// 학생 이름을 검색하여 해당 학생이 어느 자리에 앉았는지 출력
+		Scanner sc = new Scanner(System.in);
+		System.out.print("검색할 학생 이름을 입력하세요 : ");
+		String name = sc.nextLine();
+		
+		String partName = null; // 분단
+		String rowName = null;	// 몇 번째 줄
+		String colName = null;	// 왼쪽, 오른쪽
+		
+		for(int i = 0; i < seat1.length; i++) {
+			for(int j = 0; j <seat1[i].length; j++) {
+				if(seat1[i][j].equals(name)) {
+					partName = "1분단";
+					if(i == 0) {
+						rowName = "첫 번째 줄";
+					} else if(i == 1) {
+						rowName = "두 번째 줄";
+					} else {
+						rowName = "세 번째 줄";
+					}
+					
+					if(j == 0) {
+						colName = "왼쪽";
+					} else {
+						colName = "오른쪽";
+					}
+					break;
+				}
+				if(seat2[i][j].equals(name)) {
+					partName = "2분단";
+					if(i == 0) {
+						rowName = "첫 번째 줄";
+					} else if(i == 1) {
+						rowName = "두 번째 줄";
+					} else {
+						rowName = "세 번째 줄";
+					}
+					
+					if(j == 0) {
+						colName = "왼쪽";
+					} else {
+						colName = "오른쪽";
+					}
+					break;
+				}
+			}
+		}
+		System.out.println("검색하신 " + name + " 학생은" + partName + " " + rowName + " " + colName + "에 있습니다.");
+ 	}
 }
