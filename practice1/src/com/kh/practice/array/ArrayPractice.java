@@ -452,6 +452,7 @@ public class ArrayPractice {
 			System.out.print("더 입력하시겠습니까?(y/n) : ");
 			user = sc.nextLine();
 			
+			//***********************************//
 			if(user.equalsIgnoreCase("Y")) { // 대소문자를 무시하고 같은지를 확인함!!
 				System.out.print("더 입력하고 싶은 개수 : ");
 				int add = Integer.parseInt(sc.nextLine());
