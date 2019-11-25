@@ -81,7 +81,7 @@ public class MemberMenu {
 		int age = sc.nextInt();
 		
 		mc.insertMember(inputId, name, password, email, gender, age);
-		mainMenu();
+		// mainMenu();
 	}
 	public void searchMember() {
 		System.out.println("1. 아이디로 검색하기");
@@ -114,12 +114,12 @@ public class MemberMenu {
 		sc.nextLine();
 		System.out.print("검색할 이름 : ");
 		String inputName = sc.nextLine();
-		if(mc.searchName(inputName) != null) {
+		if(mc.searchName(inputName) != null && mc.searchName(inputName).length != 0) {
 			System.out.println("찾으신 회원 조회 결과 입니다.");
 			for(int i = 0; i < mc.searchName(inputName).length; i++) {
 				System.out.println(mc.searchName(inputName)[i].inform());
 			}
-		} else if(mc.searchName(inputName) == null) {
+		} else {
 			System.out.println("검색 결과가 없습니다."); // mainMenu();
 		}
 	}
@@ -127,12 +127,12 @@ public class MemberMenu {
 		sc.nextLine();
 		System.out.print("검색할 이메일 : ");
 		String inputEmail = sc.nextLine();
-		if(mc.searchEmail(inputEmail) != null) {
+		if(mc.searchEmail(inputEmail) != null && mc.searchName(inputEmail).length != 0) {
 			System.out.println("찾으신 회원 조회 결과 입니다.");
 			for(int i = 0; i < mc.searchEmail(inputEmail).length; i++) {
 				System.out.println(mc.searchEmail(inputEmail)[i].inform());
 			}
-		} else if(mc.searchEmail(inputEmail) == null) {
+		} else {
 			System.out.println("검색 결과가 없습니다."); // mainMenu();
 		}
 	}

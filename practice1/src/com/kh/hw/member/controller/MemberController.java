@@ -6,7 +6,7 @@ public class MemberController {
 	
 	private Member[] m = new Member[SIZE];
 	public static int SIZE = 10;
-	// 이거자체가 11명 아닌가..? 11명으로 해보자..
+	// 최대 등록수 10명을 설정.
 	
 	int currentMember = 0;
 	public int existMemberNum() {
@@ -37,6 +37,8 @@ public class MemberController {
 	}
 	public void insertMember(String id, String name, String password,
 							String email, String gender, int age) {
+		// 삭제된 후 빈자리에 찾아 가려면? 
+		// for문을 씌워줘서 빈자리를 찾아 가면 될거 같음.
 		m[currentMember] = new Member(id, name, password, email, gender.charAt(0), age);
 //		m[SIZE].setId(id);
 //		m[SIZE].setName(name);
@@ -61,22 +63,22 @@ public class MemberController {
 	}
 	public Member[] searchName(String name) {
 		Member[] nameArr = new Member[currentMember];
-		for(int i = 0; i <= currentMember-1; i++) {
-			if(m[i].getName().equals(name)) {
-				nameArr[i] = m[i];
-			} else {
+		for(int i = 0; i < currentMember; i++) {
+			if(!m[i].getName().equals(name)) {
 				nameArr = null;
+			} else if(m[i].getName().equals(name)) {
+				nameArr[i] = m[i];
 			}
 		}
 		return nameArr;
 	}
 	public Member[] searchEmail(String email) {
 		Member[] emailArr = new Member[currentMember];
-		for(int i = 0; i <= currentMember-1; i++) {
-			if(m[i].getEmail().equals(email)) {
-				emailArr[i] = m[i];
-			} else {
+		for(int i = 0; i < currentMember; i++) {
+			if(!m[i].getEmail().equals(email)) {
 				emailArr = null;
+			} else {
+				emailArr[i] = m[i];
 			}
 		}
 		return emailArr;
