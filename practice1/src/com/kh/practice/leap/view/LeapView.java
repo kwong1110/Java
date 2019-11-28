@@ -16,6 +16,6 @@ public class LeapView {
 			year = "평년";
 		}
 		System.out.println(c.get(Calendar.YEAR) + "년은 " + year + "입니다.");
-		System.out.println("총 날짜 수 : " + lc.leapDate(c));
+		System.out.println("총 날짜 수 : " + lc.leapDate(c)); // 737391
 	}
 }
