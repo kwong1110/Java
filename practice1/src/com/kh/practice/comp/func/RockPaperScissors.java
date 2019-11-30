@@ -41,7 +41,7 @@ public class RockPaperScissors {
 			System.out.println("컴퓨터 : " + computer);
 			System.out.println(name + " : " + user);
 			
-			if(computer == user) {
+			if(computer.equals(user)) {
 				System.out.println("비겼습니다.");
 				draw += 1;
 			} else if(computer.equals("가위") && user.equals("바위") ||
@@ -119,5 +119,54 @@ public class RockPaperScissors {
 			System.out.println(result);
 		}
 		System.out.printf("%d전 %d승 %d무 %d패", count, win, draw, (count-win-draw));
+	}
+	
+	public void rpsPractice() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("당신의 이름을 입력해주세요 : ");
+		String name = sc.nextLine();
+		// 전적을 저장할 변수를 선언
+		int total = 0;
+		int win = 0;
+		int draw = 0;
+		int lose = 0;
+					
+		do {
+			System.out.print("가위바위보 : ");
+			String userRps = sc.nextLine();
+			if(userRps.equals("exit")) { // equals 말고 따른거 있나 확인.
+				break;
+			} else if(!userRps.equals("가위") && !userRps.equals("바위") && !userRps.equals("보")) {
+				System.out.println("잘못 입력하셨습니다.");
+				continue;
+			}
+			
+			// 컴퓨터의 가위바위보를 정해준다.
+			int ranRps = (int)(Math.random() * 3);
+			String comRps = "";
+			switch(ranRps){
+				case 0: comRps = "가위"; break; 
+				case 1: comRps = "바위"; break; 
+				case 2: comRps = "보"; break; 
+			}
+					
+			System.out.println("컴퓨터 : " + comRps);
+			System.out.println(name + " : " + userRps);
+			
+			if(userRps.equals(comRps)) {
+				System.out.println("비겼습니다.");
+				draw++;
+			} else if(userRps.equals("가위") && comRps.equals("보") 
+					|| userRps.equals("바위") && comRps.equals("가위")
+					||userRps.equals("보") && comRps.equals("바위")) {
+				System.out.println("이겼습니다!!");
+				win++;
+			} else {
+				System.out.println("졌습니다ㅜㅜ");
+				lose++;
+			}
+			total++;
+		}while(true);
+		System.out.printf("%d전 %d승 %d무 %d패", total, win, draw, lose);
 	}
 }
