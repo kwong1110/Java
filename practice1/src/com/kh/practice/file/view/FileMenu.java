@@ -80,6 +80,7 @@ public class FileMenu {
 	}
 	
 	public void fileEdit() {
+
 		System.out.print("수정할 파일 명 : ");
 		String file = sc.nextLine();
 		if(fc.checkName(file)) {
