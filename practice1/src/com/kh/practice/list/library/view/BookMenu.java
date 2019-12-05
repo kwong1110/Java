@@ -12,9 +12,8 @@ public class BookMenu {
 	private BookController bc = new BookController();
 	
 	public void mainMenu() {
-		
-		do {
 		System.out.println("===== Welcome KH Library =====");
+		do {		
 		System.out.println("=====****** 메인 메뉴  ******=====");
 		System.out.println("1. 새 도서 추가");
 		System.out.println("2. 도서 전체 조회");

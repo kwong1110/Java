@@ -9,7 +9,6 @@ public class Book implements Comparable {
 	
 	public Book() {}
 	public Book(String title, String author, String category, int price) {
-		super();
 		this.title = title;
 		this.author = author;
 		this.category = category;
