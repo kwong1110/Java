@@ -29,14 +29,14 @@ public class MusicController {
 	}
 	
 	public Music searchMusic(String title) {
+		// 처음 값을 null로 해주어야 검색이 안됨.
 		Music searchMusic = new Music();
+		searchMusic = null;
 		for(int i = 0; i < list.size(); i++) {
 //			if(list.contains(new Music(title, list.get(i).getSinger()))) {
 			if(list.get(i).getTitle().equals(title)){
 				searchMusic = list.get(i);
 				break;
-			}else {
-				searchMusic = null;
 			}
 		}
 		// 만약 동일 곡이 여러개라면...?? 
@@ -50,6 +50,7 @@ public class MusicController {
 		// remove(Object o) -> 반환 : boolean
 		
 		Music removeMusic = new Music();
+		removeMusic = null;
 		for(int i = 0; i < list.size(); i++) {
 //			if(list.contains(new Music(title, list.get(i).getSinger()))) {
 				
@@ -58,31 +59,32 @@ public class MusicController {
 //				removeMusic = list.get(i);
 //				list.remove(list.get(i));
 				break;
-			}else {
-				removeMusic = null;
 			}
 		}
 		return removeMusic;
 	}
 	
 	public Music setMusic(String title, Music music) {
-		if(list.contains(title)) {
-			int index = list.indexOf(music);
-			Music m = list.get(index);
-			list.set(index, music);
-			return m;
-		} else {
-			return null;
+		// 타이틀과 일치하면 그 객체를 m에 넣어 리턴 후 set()으로 바꿔줌.
+		Music m = new Music();
+		m = null;
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getTitle().equals(title)) {
+				m = list.get(i);
+				list.set(i, music);
+				break;
+			}
 		}
+		return m;
 	}
 	
 	public int ascTitle() {	
-		list.sort(new AscTitle());  // 제목 같으면 가수 오름차순 정렬.
+		list.sort(new AscTitle());  // 제목 같으면 가수 오름차순 정렬. comparator클래스이용.
 		return 1;
 	}
 	
 	public int descSinger() {
-		Collections.sort(list); // 가수 내림차순 정렬.
+		Collections.sort(list); // 가수 내림차순 정렬. compareTo 메소드 이용.
 		return 1;
 	}
 	

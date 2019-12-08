@@ -116,7 +116,7 @@ public class MusicView {
 		String singer = sc.nextLine();
 		
 		Music m = new Music(reTitle, singer);
-		if(mc.setMusic(title, m).equals(m)) {
+		if(mc.searchMusic(title) == null) {
 			System.out.println("수정할 곡이 없습니다");
 		} else {
 			System.out.println(mc.setMusic(title, m) + "의 값이 변경 되었습니다.");
