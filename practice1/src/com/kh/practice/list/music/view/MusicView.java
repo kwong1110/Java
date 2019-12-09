@@ -99,6 +99,11 @@ public class MusicView {
 		System.out.print("검색할 곡 명 : ");
 		String title = sc.nextLine();
 //		mc.removeMusic(title);
+		// null-null이 나올때 대처 -> 결국 두번 호출되어서 발생하는 것.
+		// 1. 변수에 담는다.
+//		mc.'search'Music(title)을 사용할 필요 없이 
+//		변수에 mc.removeMusic(title)을 담아주어도 1번만 호출되어 정상 출력된다.
+		// 2. 다른 메소드를 이용.
 		if(mc.searchMusic(title).getTitle() == null) {
 			System.out.println("삭제할 곡이 없습니다.");
 		} else {
