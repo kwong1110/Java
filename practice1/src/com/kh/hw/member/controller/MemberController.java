@@ -10,6 +10,15 @@ public class MemberController {
 	
 	int currentMember = 0;
 	public int existMemberNum() {
+		// 밖에 선언해주면 안됬엇다..
+//		int count = 0;
+//		for(int i = 0; i < m.length; i++) {
+//			if(m[i] != null) {
+//				count++;
+//			}
+//		}
+//		
+//		return count;
 		return currentMember;
 	}
 	public Boolean checkId(String inputId) {
@@ -39,13 +48,19 @@ public class MemberController {
 							String email, String gender, int age) {
 		// 삭제된 후 빈자리에 찾아 가려면? 
 		// for문을 씌워줘서 빈자리를 찾아 가면 될거 같음.
+		// 맞음.
+		
+//		int index = 0;
+//		for(int i = 0; i < m.length; i++) {
+//			if(m[i] == null) {
+//				index = i;
+//				break;
+//			}
+//		}
+		
+//		m[index] = new Member(id, name, password, email, gender, age);
 		m[currentMember] = new Member(id, name, password, email, gender.charAt(0), age);
-//		m[SIZE].setId(id);
-//		m[SIZE].setName(name);
-//		m[SIZE].setPassword(password);
-//		m[SIZE].setEmail(email);
-//		m[SIZE].setGender(gender.charAt(0));
-//		m[SIZE].setAge(age);
+
 		currentMember += 1;
 	}
 	
@@ -59,7 +74,19 @@ public class MemberController {
 				return m[idArr].inform();
 			}
 		}
+		// else 값을 최대한 안쓰고 간결하게 할 수도 있는데..
+//		for(int i = 0; i < m.length; i++) {
+//			if(m[i] != null) {
+//				if(m[i].getId().equals(id)) {
+//					return m[i].inform();
+//				}
+//			}
+//		}
+//		
+//		return null;
 		return "검색 결과가 없습니다.";
+		// 지금은 스트링을 저렇게 리턴 안하고 null로 리턴해줌.
+		// 나아지긴 함.
 	}
 	public Member[] searchName(String name) {
 		Member[] nameArr = new Member[currentMember];

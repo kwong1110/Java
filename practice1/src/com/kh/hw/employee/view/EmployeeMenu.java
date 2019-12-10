@@ -70,18 +70,28 @@ public class EmployeeMenu {
 		System.out.print("메뉴 번호를 누르세요 : ");
 		int menuNum = sc.nextInt();
 		
-		switch(menuNum) {
-			case 1: System.out.print("수정할 전화번호 : ");
-					String phone = sc.nextLine();
-					ec.modify(phone); break;
-			case 2: System.out.print("수정할 사원 연봉 : ");
-					int salary = sc.nextInt();
-					ec.modify(salary); break;
-			case 3: System.out.print("수정할 보너스 율 : ");
-					double bonus = sc.nextDouble();
-					ec.modify(bonus); break;
-			case 9: System.out.println("메인메뉴로 돌아갑니다."); break;
-			default: System.out.println("잘못 입력하셨습니다."); break;
+		switch (menuNum) {
+		case 1:
+			System.out.print("수정할 전화번호 : ");
+			String phone = sc.nextLine();
+			ec.modify(phone);
+			break;
+		case 2:
+			System.out.print("수정할 사원 연봉 : ");
+			int salary = sc.nextInt();
+			ec.modify(salary);
+			break;
+		case 3:
+			System.out.print("수정할 보너스 율 : ");
+			double bonus = sc.nextDouble();
+			ec.modify(bonus);
+			break;
+		case 9:
+			System.out.println("메인메뉴로 돌아갑니다.");
+			break;
+		default:
+			System.out.println("잘못 입력하셨습니다.");
+			break;
 		}
 	}
 	
